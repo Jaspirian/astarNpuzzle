@@ -18,11 +18,11 @@ class Block_Puzzle:
 		Alternatively, takes a 2D list of integers that is then converted.
 		"""
 		if type(blocks) is list:
-			self.blocks = self.__list_to_dict__(blocks)
+			self.blocks = self._list_to_dict(blocks)
 		else :
 			self.blocks = blocks
 
-		self.width = self.__get_width__()
+		self.width = self._get_width()
 		self.height = int(len(self.blocks) / self.width)
 
 	def __eq__(self, other):
@@ -49,7 +49,7 @@ class Block_Puzzle:
 		"""
 		return hash(frozenset(self.blocks.items()))
 
-	def __list_to_dict__(self, blockList):
+	def _list_to_dict(self, blockList):
 		"""
 		Converts a 2D list of integers into a dictionary.
 		"""
@@ -61,7 +61,7 @@ class Block_Puzzle:
 
 		return dictionary
 
-	def __get_width__(self):
+	def _get_width(self):
 		"""
 		Returns the width of this puzzle.
 		"""
@@ -284,8 +284,6 @@ def aStar(start, goal):
 	while openHeap:
 		# Get the lowest f-score state not yet evaluated.
 		current = heapq.heappop(openHeap)
-
-		print(len(openHeap))
 
 		# Skip this state if it's a duplicate of one that's already been evaluated.
 		if current in closedSet:
